@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import { userRouter } from './modules/user/userRouter.js';
 
 const server: Express = express();

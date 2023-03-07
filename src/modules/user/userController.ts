@@ -4,13 +4,13 @@ import { IUser } from '../../interfaces/IUser.js';
 import { deleteUserFs, readerUsersFs, createUserFs, updateUserFs } from '../../models/userModel.js';
 
 
-
 enum STATUS_MESSAGE {
     USER_NOT_FOUND = 'User not found',
     USER_CREATED = 'User created',
     USER_DELETED = 'User deleted',
     USER_UPDATED = 'User updated',
 };
+
 
 enum MESSAGE_INVALID_REQUEST {
     INVALID_BODY = 'Invalid body'
@@ -25,11 +25,12 @@ export const userIndex = async (req: Request, res: Response) => {
 
 const isNotBodyValid = (body: IUser): boolean => {
 
-    if (!body.name || !body.email || !body.id || !body.user_uuid){
+    if (!body.name || !body.email || !body.id || !body.user_uuid) {
         return true;
     }
     return false;
 }
+
 
 const createDate = (d: Date): string => {
 
@@ -63,12 +64,12 @@ export const userCreate = async (req: Request, res: Response) => {
 
 
     if (isNotBodyValid(user)) {
-        res.status(500).json({message: MESSAGE_INVALID_REQUEST.INVALID_BODY});
+        res.status(500).json({ message: MESSAGE_INVALID_REQUEST.INVALID_BODY });
         return;
     }
 
     await createUserFs(user)
-    res.status(200).json({message: STATUS_MESSAGE.USER_CREATED, data: user});
+    res.status(200).json({ message: STATUS_MESSAGE.USER_CREATED, data: user });
     return;
 }
 
@@ -80,11 +81,11 @@ export const userShow = async (req: Request, res: Response) => {
     const user = users.find(({ user_uuid, id }) => [user_uuid, id.toString()].includes(user_id));
 
     if (!user) {
-        res.status(200).json({message: STATUS_MESSAGE.USER_NOT_FOUND});
+        res.status(200).json({ message: STATUS_MESSAGE.USER_NOT_FOUND });
         return;
     }
 
-    res.status(200).json({data: user});
+    res.status(200).json({ data: user });
 }
 
 
@@ -94,15 +95,16 @@ export const userDelete = async (req: Request, res: Response) => {
 
     const userIndex = users.findIndex(({ user_uuid, id }) => [user_uuid, id.toString()].includes(user_id));
 
-    if (userIndex === -1 ) {
-        res.status(404).json({message: STATUS_MESSAGE.USER_NOT_FOUND});
+    if (userIndex === -1) {
+        res.status(404).json({ message: STATUS_MESSAGE.USER_NOT_FOUND });
         return;
     }
 
     users.splice(userIndex, 1);
     await deleteUserFs(users as any)
-    res.status(200).json({ message: STATUS_MESSAGE.USER_DELETED});
+    res.status(200).json({ message: STATUS_MESSAGE.USER_DELETED });
 }
+
 
 export const userUpdate = async (req: Request, res: Response) => {
     const { user_id } = req.params;
@@ -118,13 +120,13 @@ export const userUpdate = async (req: Request, res: Response) => {
     };
 
 
-    if (userIndex === -1 ) {
-        res.status(404).json({message: STATUS_MESSAGE.USER_NOT_FOUND});
+    if (userIndex === -1) {
+        res.status(404).json({ message: STATUS_MESSAGE.USER_NOT_FOUND });
         return;
     }
 
     if (isNotBodyValid(user)) {
-        res.status(200).json({message: MESSAGE_INVALID_REQUEST.INVALID_BODY});
+        res.status(200).json({ message: MESSAGE_INVALID_REQUEST.INVALID_BODY });
         return;
     }
 
@@ -132,6 +134,6 @@ export const userUpdate = async (req: Request, res: Response) => {
 
     await updateUserFs(users as any)
 
-    res.status(200).send({message: STATUS_MESSAGE.USER_UPDATED, data: users[userIndex]});
+    res.status(200).send({ message: STATUS_MESSAGE.USER_UPDATED, data: users[userIndex] });
 
 }

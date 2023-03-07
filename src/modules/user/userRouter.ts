@@ -9,7 +9,6 @@ import {
 
 export const userRouter = Router();
 
-
 userRouter.get('/', userIndex);
 
 userRouter.post('/', userCreate);
