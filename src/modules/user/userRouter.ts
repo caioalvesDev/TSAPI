@@ -3,7 +3,8 @@ import {
     userCreate,
     userIndex,
     userShow,
-    userDelete
+    userDelete,
+    userUpdate
 } from './userController.js';
 
 export const userRouter = Router();
@@ -15,5 +16,6 @@ userRouter.post('/', userCreate);
 
 userRouter.get('/:user_id', userShow);
 
-userRouter.delete('/:user_id', userDelete)
+userRouter.delete('/:user_id', userDelete);
 
+userRouter.put('/:user_id', userUpdate);
