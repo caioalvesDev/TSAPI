@@ -1,7 +1,12 @@
 import { Request, Response } from 'express';
 import { randomUUID } from 'crypto';
 import { IUser } from '../../interfaces/IUser.js';
-import { deleteUserFs, readerUsersFs, createUserFs, updateUserFs } from '../../models/userModel.js';
+import {
+    deleteUserFs,
+    readerUsersFs,
+    createUserFs,
+    updateUserFs
+} from '../../models/userModel.js';
 
 
 enum STATUS_MESSAGE {
@@ -132,7 +137,7 @@ export const userUpdate = async (req: Request, res: Response) => {
 
     users[userIndex] = { ...users[userIndex], name, email, updated_at };
 
-    await updateUserFs(users as any)
+    await updateUserFs(users as any);
 
     res.status(200).send({ message: STATUS_MESSAGE.USER_UPDATED, data: users[userIndex] });
 
