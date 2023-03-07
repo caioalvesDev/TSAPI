@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "ricardo",
+    "email": "ricardo@planium.io",
+    "user_uuid": "31b29154-135f-41a8-83ef-d9bdc608a10a",
+    "created_at": "06/03/2023 - 22:19",
+    "updated_at": ""
+  },
+  {
+    "id": 2,
+    "name": "ricardo",
+    "email": "ricardo@planium.io",
+    "user_uuid": "9325cf95-f784-4f43-98ae-79cb50563c0c",
+    "created_at": "06/03/2023 - 22:19",
+    "updated_at": ""
+  },
+  {
+    "id": 3,
+    "name": "ricardo",
+    "email": "ricardo@planium.io",
+    "user_uuid": "14d7d3aa-03ea-4ac3-a107-dc55d080581f",
+    "created_at": "06/03/2023 - 22:28",
+    "updated_at": ""
+  }
+]
