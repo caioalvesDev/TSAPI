@@ -22,5 +22,13 @@
     "user_uuid": "14d7d3aa-03ea-4ac3-a107-dc55d080581f",
     "created_at": "06/03/2023 - 22:28",
     "updated_at": ""
+  },
+  {
+    "id": 4,
+    "name": "caio1",
+    "email": "caio@planium.wwwwww",
+    "user_uuid": "e9ea399c-90d9-450c-9e33-d50ff3851c7e",
+    "created_at": "06/03/2023 - 22:53",
+    "updated_at": "09/03/2023 - 14:20"
   }
 ]

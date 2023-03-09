@@ -3,7 +3,7 @@ import { IUser } from '../interfaces/IUser';
 
 const filePath = './database_json/users.json'
 
-export const readerUsersFs = async () => {
+export const readerUsersFs = async (): Promise<object | any > => {
     try {
         const data = readFileSync(filePath, { encoding: 'utf-8' });
         console.log('success in reading file');
@@ -13,7 +13,7 @@ export const readerUsersFs = async () => {
     }
 }
 
-export const createUserFs = async (user: IUser) => {
+export const createUserFs = async (user: IUser): Promise<void> => {
     try {
         const users = await readerUsersFs();
         users.push(user);
@@ -25,7 +25,7 @@ export const createUserFs = async (user: IUser) => {
     }
 }
 
-export const deleteUserFs = async (users: IUser) => {
+export const deleteUserFs = async (users: IUser): Promise<void> => {
     try {
         writeFileSync(filePath, JSON.stringify(users, null, 2), { encoding: 'utf-8' });
         console.log('successfully deleted');
@@ -34,7 +34,7 @@ export const deleteUserFs = async (users: IUser) => {
     }
 }
 
-export const updateUserFs = async (users: IUser) => {
+export const updateUserFs = async (users: IUser[]): Promise<void> => {
     try {
         writeFileSync(filePath, JSON.stringify(users, null, 2), { encoding: 'utf-8' });
         console.log('successfully updated');

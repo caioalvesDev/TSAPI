@@ -22,7 +22,7 @@ enum MESSAGE_INVALID_REQUEST {
 };
 
 
-export const userIndex = async (req: Request, res: Response) => {
+export const userIndex = async (req: Request, res: Response): Promise<void> => {
     const users: string = await readerUsersFs();
     res.status(200).json(users);
 }
@@ -52,7 +52,7 @@ const createDate = (d: Date): string => {
 }
 
 
-export const userCreate = async (req: Request, res: Response) => {
+export const userCreate = async (req: Request, res: Response): Promise<void> =>  {
     const { name, email, } = req.body;
     const user_uuid: string = randomUUID();
     const created_at: string = createDate(new Date());
@@ -79,7 +79,7 @@ export const userCreate = async (req: Request, res: Response) => {
 }
 
 
-export const userShow = async (req: Request, res: Response) => {
+export const userShow = async (req: Request, res: Response): Promise<void> => {
     const { user_id } = req.params;
     const users: IUser[] = await readerUsersFs();
 
@@ -94,7 +94,7 @@ export const userShow = async (req: Request, res: Response) => {
 }
 
 
-export const userDelete = async (req: Request, res: Response) => {
+export const userDelete = async (req: Request, res: Response): Promise<void> => {
     const { user_id } = req.params;
     const users: IUser[] = await readerUsersFs();
 
@@ -111,7 +111,7 @@ export const userDelete = async (req: Request, res: Response) => {
 }
 
 
-export const userUpdate = async (req: Request, res: Response) => {
+export const userUpdate = async (req: Request, res: Response): Promise<void> => {
     const { user_id } = req.params;
     const { name, email } = req.body;
     const updated_at: string = createDate(new Date());
@@ -137,7 +137,7 @@ export const userUpdate = async (req: Request, res: Response) => {
 
     users[userIndex] = { ...users[userIndex], name, email, updated_at };
 
-    await updateUserFs(users as any);
+    await updateUserFs(users);
 
     res.status(200).send({ message: STATUS_MESSAGE.USER_UPDATED, data: users[userIndex] });
 
